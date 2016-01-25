@@ -13,29 +13,28 @@ $(function() {
     var res = str.split("/");
 
     
-    temp=data.currently.apparentTemperature;
+    temp=data.currently.temperature;
     temp=Math.ceil(temp);
 
-    var outlook="Outlook for the week: "+data.daily.summary;
-    var high="High: "+data.daily.data[0].apparentTemperatureMax;
-    var low="Low: "+data.daily.data[0].apparentTemperatureMin;
-
-    var today_pic="<h3>Rest of Today</h3>"+"<img src="+data.daily.data[0].icon+".jpg>"
-    var tom_pic="<h3>Tomorrow</h3>"+"<img src="+data.daily.data[1].icon+".jpg>"  
-    var dft_pic="<h3>Day After</h3>"+"<img src="+data.daily.data[2].icon+".jpg>"  
-
-
     // Put your code here. Don't change any other code in this file. You will be sad.
+
     var topleft = res[1]+", "+res[0];
+    var outlook="<b> Outlook for the week: </b>"+data.daily.summary;
+    var today_pic="<h3>Rest of Today</h3>"+"<img src="+data.daily.data[0].icon+".jpg>"
+    var today_temp="Max Temperature: "+ data.daily.data[0].temperatureMax+" <sup>o</sup>F"+"<br>"+"Min Temperature :"+data.daily.data[0].temperatureMin+" <sup>o</sup>F";
+
     var topmid = "<img src="+data.currently.icon+".jpg>";
     var summary= data.currently.summary;
-    var topright = temp+" <sup>o</sup>F";
+    var tom_pic="<h3>Tomorrow</h3>"+"<img src="+data.daily.data[1].icon+".jpg>"
+    var tom_temp="Max Temperature: "+ data.daily.data[1].temperatureMax+" <sup>o</sup>F"+"<br>"+"Min Temperature :"+data.daily.data[1].temperatureMin+" <sup>o</sup>F";
+    
 
-    /* var markup  = "City = " + parts[1] + "<br>" 
-                + "Summary = " + data.currently.summary + "<br> " 
-                + "Temperature = " + data.currently.apparentTemperature +"<br>" 
-                + "Humidity = " + data.currently.humidity + "<br>" 
-                 ; */
+    var topright = temp+" <sup>o</sup>F";
+    var high="High: "+data.daily.data[0].temperatureMax+" <sup>o</sup>F";
+    var low="Low: "+data.daily.data[0].temperatureMin+" <sup>o</sup>F";
+
+    var dft_pic="<h3>Day After</h3>"+"<img src="+data.daily.data[2].icon+".jpg>"  
+    var dft_temp="Max Temperature: "+ data.daily.data[2].temperatureMax+" <sup>o</sup>F"+"<br>"+"Min Temperature :"+data.daily.data[2].temperatureMin+" <sup>o</sup>F";
 
     // End of your code. No, really. Don't change anything below this, or above line 11.
 
@@ -43,14 +42,20 @@ $(function() {
     // and write it out to the page.
     $('.weather-report').html(topleft);
     $('.weather-report1').html(outlook);
+    $('.weather-report6').html(today_pic);
+    $('.weather-report6_1').html(today_temp);
+
     $('.weather-report2').html(topmid);
     $('.weather-report2_1').html(summary);
+    $('.weather-report7').html(tom_pic);
+    $('.weather-report7_1').html(tom_temp);
+
     $('.weather-report3').html(topright);
     $('.weather-report4').html(high);
     $('.weather-report5').html(low);
-    $('.weather-report6').html(today_pic);
-    $('.weather-report7').html(tom_pic);
     $('.weather-report8').html(dft_pic);
+    $('.weather-report8_1').html(dft_temp);
+
   }
 
   $('a.get-the-weather').on('click', function(event) {
